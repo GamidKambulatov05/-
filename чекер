@@ -1,0 +1,18 @@
+import requests
+
+def check_balance(wallet_address):
+    api_url = f'https://api.example.com/balance/{wallet_address}'
+    headers = {'Authorization': 'Bearer YOUR_API_KEY'}
+
+    response = requests.get(api_url, headers=headers)
+
+    if response.status_code == 200:
+        balance_data = response.json()
+        balance = balance_data.get('balance', 0)
+        print(f"Баланс кошелька {wallet_address}: {balance} ETH")
+    else:
+        print(f"Не удалось получить баланс. Код статуса: {response.status_code}")
+
+if __name__ == "__main__":
+    wallet_address = input("Введите адрес кошелька: ")
+    check_balance(wallet_address)
